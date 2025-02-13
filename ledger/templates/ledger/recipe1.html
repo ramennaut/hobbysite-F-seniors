@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ recipe.name }}</title>
+</head>
+<body>
+    <h1>{{ recipe.name }}</h1>
+    <h3>Ingredients:</h3>
+    <ul>
+        {% for ingredient in recipe.ingredients %}
+            <li>{{ ingredient.name }} - {{ ingredient.quantity }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'recipe_list' %}">Back to Recipe List</a>
+</body>
+</html>
