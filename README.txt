@@ -4,3 +4,5 @@
 - PALOMARES, Miguel Antonio C.
 - RIBO, Alyssa Mari R.
 - SOTO, Kathleene C.
+
+Checking out how to pull request!
