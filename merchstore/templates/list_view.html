@@ -1,0 +1,9 @@
+{% extends 'base_template.html' %}
+{% block content %}
+    <h1>Merch Store</h1>
+    <ul>
+        {% for product in object_list %}
+            <li><a href={{product.get_absolute_url}"></a>{{product.name}}</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}
