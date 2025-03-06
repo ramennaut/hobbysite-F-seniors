@@ -3,7 +3,7 @@
     <h1>Merch Store</h1>
     <ul>
         {% for product in object_list %}
-            <li><a href={{product.get_absolute_url}"></a>{{product.name}}</li>
+            <li><a href="{{product.get_absolute_url}}">{{product.name}}</a></li>
         {% endfor %}
     </ul>
 {% endblock content %}
