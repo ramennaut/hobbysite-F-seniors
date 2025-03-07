@@ -1,13 +1,22 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404
 from .models import Article, ArticleCategory
 
-def article_list(request):
+def list_view(request):
     articles = Article.objects.all()
-    return render(request, 'wiki/article_list.html', {'articles': articles})
+    categories = ArticleCategory.objects.all()
+    return render(request, 'wiki/article_list.html', {
+        'articles': articles,
+        'categories': categories,
+    })
 
-def article_detail(request, pk):
-    article = get_object_or_404(Article, pk=pk)
+def detail_view(request, id):
+    article = get_object_or_404(Article, id=id)
     return render(request, 'wiki/article_detail.html', {'article': article})
 
-def home(request):
-    return redirect('wiki:article_list')
+def category_view(request, id):
+    category = get_object_or_404(ArticleCategory, id=id)
+    articles = Article.objects.filter(category=category)
+    return render(request, 'wiki/category_list.html', {
+        'category': category,
+        'articles': articles,
+    })

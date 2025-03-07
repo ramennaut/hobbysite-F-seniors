@@ -5,5 +5,5 @@ from wiki import views as wiki_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('wiki/', include('wiki.urls')),
-    path('', wiki_views.home, name='home'), 
+    path('', wiki_views.list_view, name='home'),  
 ]

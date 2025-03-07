@@ -1,16 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Article List</title>
-</head>
-<body>
-    <h1>Articles</h1>
-    <ul>
-        {% for article in articles %}
-        <li>
-            <a href="{% url 'wiki:article_detail' article.pk %}">{{ article.title }}</a>
-        </li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends "wiki/base.html" %}
+
+{% block title %}Articles{% endblock %}
+
+{% block content %}
+<h1>Articles</h1>
+<ul>
+    {% for article in articles %}
+    <li>
+        <a href="{% url 'wiki:article_detail' article.id %}">{{ article.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
+<h2>Categories</h2>
+<ul>
+    {% for category in categories %}
+    <li>
+        <a href="{% url 'wiki:category_list' category.id %}">{{ category.name }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
