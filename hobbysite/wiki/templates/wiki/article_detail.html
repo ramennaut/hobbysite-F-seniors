@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="article-detail">
+    <h1>{{ article.title }}</h1>
+    <p>Category: {{ article.category.name }}</p>
+    <p>Created: {{ article.created_on }}</p>
+    <p>Last Updated: {{ article.updated_on }}</p>
+    <div class="article-content">
+        {{ article.entry|linebreaks }}
+    </div>
+</div>
+{% endblock %}
