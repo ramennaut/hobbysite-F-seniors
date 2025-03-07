@@ -1,14 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Commissions</h1>
+    <h1>All Commissions</h1>
     {% if commissions %}
-        <ul>
-            {% for commission in commissions %}
-                <li>{{ commission.title }}</li>
-            {% endfor %}
-        </ul>
+    <ol>
+        {% for commission in commissions %}
+        <li>
+            <a href="{% url 'commissions:commissions_detail' commission.pk %}">
+                {{ commission.title }}
+            </a> (for {{ commission.people_required }} people)
+        </li>
+        {% endfor %}
+    </ol>
     {% else %}
-        <p>No commissions found.</p>
+    <p>No commissions found.</p>
     {% endif %}
 {% endblock %}
