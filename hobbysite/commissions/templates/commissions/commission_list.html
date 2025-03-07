@@ -8,7 +8,7 @@
         <li>
             <a href="{% url 'commissions:commissions_detail' commission.pk %}">
                 {{ commission.title }}
-            </a> ({{ commission.people_required }} people required)
+            </a> (for {{ commission.people_required }} people)
         </li>
         {% endfor %}
     </ol>

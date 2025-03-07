@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>#{{commission.pk}}: {{ commission.title }}</h1>
+    <h1>{{ commission.title }}</h1>
     <p>Created on: {{ commission.updated_on }} <span>&#8226;</span> Updated on: {{ commission.updated_on }}</p>
 
     <hr>
 
-    <p>I need {{ commission.updated_on }} people for this commission. {{ commission.description }}</p>
+    <p>I need {{ commission.people_required }} people for this commission. {{ commission.description }}</p>
 
     <hr>
 
