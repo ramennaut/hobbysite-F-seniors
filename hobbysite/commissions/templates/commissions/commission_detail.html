@@ -1,22 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>{{ commission.title }}</h1>
-    <p>{{ commission.description }}</p>
-    <p><b>People required:</b></p> {{ commission.people_required }}
-    <p><b>Created on:</b></p> {{ commission.created_on }}
-    <p><b>Updated on:</b></p> {{ commission.updated_on }}
+    <h1>#{{commission.pk}}: {{ commission.title }}</h1>
+    <p>Created on: {{ commission.updated_on }} <span>&#8226;</span> Updated on: {{ commission.updated_on }}</p>
 
-    <h2>Comments</h2>
+    <hr>
+
+    <p>I need {{ commission.updated_on }} people for this commission. {{ commission.description }}</p>
+
+    <hr>
+
+    <p><a href="{% url 'commissions:commissions_list'%}">Go back to commissions list <span>&#8617;</span></a></p>
+
+    <hr>
+
+    <h3>Comments</h3>
     {% if commission.comments.all %}
-        <ul>
+        <ol>
             {% for comment in commission.comments.all %}
                 <li>
                     <p>{{ comment.entry }}</p>
-                    <p><b>Posted on:</b>  {{ comment.created_on }}</p>
+                    <small>Posted last {{ comment.created_on }}</small>
                 </li>
             {% endfor %}
-        </ul>
+        </ol>
     {% else %}
         <p>No comments found.</p>
     {% endif %}
