@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ commission.title }}</h1>
+    <p>{{ commission.description }}</p>
+    <p><b>People required:</b></p> {{ commission.people_required }}
+    <p><b>Created on:</b></p> {{ commission.created_on }}
+    <p><b>Updated on:</b></p> {{ commission.updated_on }}
+
+    <h2>Comments</h2>
+    {% if commission.comments.all %}
+        <ul>
+            {% for comment in commission.comments.all %}
+                <li>
+                    <p>{{ comment.entry }}</p>
+                    <p><b>Posted on:</b>  {{ comment.created_on }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No comments found.</p>
+    {% endif %}
+{% endblock %}
