@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Commissions</h1>
+    {% if commissions %}
+        <ul>
+            {% for commission in commissions %}
+                <li>{{ commission.title }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No commissions found.</p>
+    {% endif %}
+{% endblock %}
