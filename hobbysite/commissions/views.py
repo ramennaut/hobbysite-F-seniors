@@ -1,11 +1,12 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.views.generic import ListView, DetailView
+from .models import Commission
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the commissions index.")
+class commision_list(ListView):
+    model = Commission
+    template_name = 'commissions/commission_list.html'
+    context_object_name = 'commissions'
 
-def commissions_list(request):
-    return HttpResponse("You're looking at the list of commissions.")
-
-def commissions_detail_1(request):
-    return HttpResponse("You're looking at commission detail 1.")
+class commission_detail(DetailView):
+    model = Commission
+    template_name = 'commissions/commission_detail.html'
+    context_object_name = 'commission'
