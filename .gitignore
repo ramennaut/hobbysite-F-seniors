@@ -5,3 +5,4 @@ sample-env/
 __pycache__/
 db.sqlite3
 venv/
+myenv/
