@@ -1,9 +1,10 @@
 from django.contrib import admin
 from django.urls import include, path
-from wiki import views as wiki_views
 
 urlpatterns = [
+    path('wiki', include('wiki.urls', namespace="wiki")),
+    path('blog/', include('blog.urls', namespace="blog")),
+    path('forum/', include('forum.urls', namespace="forum")),
+    path('commissions/', include('commissions.urls', namespace="commissions")),
     path('admin/', admin.site.urls),
-    path('wiki/', include('wiki.urls')),
-    path('', wiki_views.home, name='home'), 
 ]
