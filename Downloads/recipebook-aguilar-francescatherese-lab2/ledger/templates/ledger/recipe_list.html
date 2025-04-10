@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+(% load static %)
+
+{% block title %}Recipe Book{% endblock %}
+
+{% block content %}
+    <ul>
+        {% for recipe in recipes %}
+        <li>
+            <a href="{% recipe.get_absolute_url %}">{{ recipe.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
