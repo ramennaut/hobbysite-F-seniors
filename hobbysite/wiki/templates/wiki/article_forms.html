@@ -1,0 +1,9 @@
+{% extends "wiki/base.html" %}
+
+<h1>{% if form.instance.pk %}Edit{% else %}Create{% endif %} Article</h1>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">{% if form.instance.pk %}Update{% else %}Create{% endif %}</button>
+</form>

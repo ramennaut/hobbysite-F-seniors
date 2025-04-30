@@ -1,0 +1,45 @@
+{% extends "wiki/base.html" %}
+
+<h1>{{ article.title }}</h1>
+
+{% if article.header_image %}
+    <img src="{{ article.header_image.url }}" style="max-width:100%; height:auto;">
+{% endif %}
+
+<p>{{ article.entry }}</p>
+<p>Category: {{ article.category }}</p>
+
+{% if article.author == user %}
+    <p><a href="{% url 'wiki:article_update' article.pk %}">Edit Article</a></p>
+{% endif %}
+
+<h3>More from {{ article.category }}</h3>
+<ul>
+    {% for related in related_articles %}
+        <li><a href="{% url 'wiki:article_detail' related.pk %}">{{ related.title }}</a></li>
+    {% empty %}
+        <li>No related articles found.</li>
+    {% endfor %}
+</ul>
+
+<h3>Comments</h3>
+
+{% if user.is_authenticated %}
+    <form method="post">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit">Add Comment</button>
+    </form>
+{% else %}
+    <p><a href="{% url 'login' %}">Login</a> to comment!</p>
+{% endif %}
+
+<ul>
+    {% for comment in comments %}
+        <li><strong>{{ comment.author }}</strong> ({{ comment.created_on }}): {{ comment.entry }}</li>
+    {% empty %}
+        <li>No comments yet.</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'wiki:article_list' %}">Back to Articles</a>
