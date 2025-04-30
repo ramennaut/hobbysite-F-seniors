@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+
 from .models import Article, ArticleCategory, Comment
 from .forms import ArticleForm, CommentForm
 
@@ -64,6 +65,7 @@ class ArticleDetailView(DetailView):
                 comment.save()
                 return redirect('wiki:article_detail', pk=article.pk)
         return self.get(request, *args, **kwargs)
+    
 
 class ArticleCreateView(LoginRequiredMixin, CreateView):
     model = Article
@@ -73,6 +75,7 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user.profile
         return super().form_valid(form)
+    
 
 class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Article

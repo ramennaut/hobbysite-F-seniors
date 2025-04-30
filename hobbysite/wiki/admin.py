@@ -16,3 +16,8 @@ class CommentAdmin(admin.ModelAdmin):
     list_filter = ('created_on', 'article')
     search_fields = ('entry', 'author__user__username', 'article__title')
     readonly_fields = ('created_on', 'updated_on')
+
+admin.site.register(ArticleCategory, ArticleCategoryAdmin)
+admin.site.register(Article, ArticleAdmin)
+admin.site.register(Comment, CommentAdmin)
+
