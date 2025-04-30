@@ -1,22 +1,38 @@
 {% extends "wiki/base.html" %}
 
-{% block title %}Articles{% endblock %}
-
 {% block content %}
-<h1>Articles</h1>
-<ul>
-    {% for article in articles %}
-    <li>
-        <a href="{% url 'wiki:article_detail' article.id %}">{{ article.title }}</a>
-    </li>
-    {% endfor %}
-</ul>
-<h2>Categories</h2>
-<ul>
-    {% for category in categories %}
-    <li>
-        <a href="{% url 'wiki:category_list' category.id %}">{{ category.name }}</a>
-    </li>
-    {% endfor %}
-</ul>
+<h1>Wiki Articles</h1>
+
+{% if user.is_authenticated %}
+    <h2>Your Articles</h2>
+    <ul>
+        {% for article in user_articles %}
+            <li><a href="{% url 'wiki:article_detail' article.pk %}">{{ article.title }}</a></li>
+        {% empty %}
+            <li>You have no articles</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<h2>All Articles</h2>
+
+{% for category, articles in categorized_articles.items %}
+
+    {% if articles %}
+        <h3>{{ category.name }}</h3>
+        <ul>
+            {% for article in articles %}
+                <li><a href="{% url 'wiki:article_detail' article.pk %}">{{ article.title }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% empty %}
+    <p>No articles found</p>
+{% endfor %}
+
+{% if user.is_authenticated %}
+    <a href="{% url 'wiki:article_create' %}">Create a New Article</a>
+{% else %}
+    <p><a href="{% url 'login' %}">Login</a> to create articles</p>
+{% endif %}
 {% endblock %}
