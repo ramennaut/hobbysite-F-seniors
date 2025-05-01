@@ -2,12 +2,14 @@
 
 {% block content %}
     
-    <img src="{{ article.header_image.url }}" alt="{{ article.title }}">
     <br><h2>{{ article.title }}</h2>
     <b>Category:</b> {{ article.category.name }}
     <br><b>Created on:</b> {{ article.created_on }}
     <br><b>Updated on:</b> {{ article.updated_on }}
     <p><b>Description:</b> {{ article.entry }} </p>
+
+    <p><a href="{% url 'blog:edit' article.id %}">Edit this article</a></p>
+
 
     <p><a href="{% url 'blog:list_view' %}">Back</a></p>
 {% endblock %}
