@@ -1,12 +1,12 @@
 from django.urls import path
-from .views import index
-from .views import forum_threads
-from .views import forum_thread_1
+from . import views
+
+app_name = 'forum'
 
 urlpatterns = [
-    path('', index, name='index'),
-    path('threads/', forum_threads, name='forum_threads'),
-    path('thread/1', forum_thread_1, name='forum_thread_1'),
+    path('', views.index, name='index'),
+    path('threads/', views.thread_list, name='forum_threads'), # list view
+    path('thread/<int:pk>/', views.thread_detail, name='forum_thread_1'), # detail view
+    path('thread/add/', views.thread_create, name='forum_thread_create'), # create view
+    path('thread/<int:pk>/edit/', views.thread_update, name='forum_thread_update'), # edit view
 ]
-
-app_name = 'commissions'

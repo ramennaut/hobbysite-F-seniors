@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if form.instance.pk %}Edit Thread{% else %}Create Thread{% endif %}</title>
+</head>
+<body>
+    <h1>{% if form.instance.pk %}Edit Thread{% else %}Create Thread{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% if form.instance.pk %}Update{% else %}Post{% endif %}</button>
+    </form>
+    <a href="{% url 'forum:forum_threads' %}">Back to Threads</a>
+</body>
+</html>

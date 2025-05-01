@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Threads</title>
+</head>
+<body>
+    <h1>All Threads</h1>
+
+    {% if user.is_authenticated and user_threads %}
+        <h2>Your Threads</h2>
+        <ul>
+            {% for thread in user_threads %}
+                <li><a href="{% url 'forum:forum_thread_1' thread.pk %}">{{ thread.title }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <h2>All Other Threads</h2>
+    <ul>
+        {% for thread in other_threads %}
+            <li><a href="{% url 'forum:forum_thread_1' thread.pk %}">{{ thread.title }}</a></li>
+        {% empty %}
+            <li>No other threads available.</li>
+        {% endfor %}
+    </ul>
+
+    {% if user.is_authenticated %}
+        <a href="{% url 'forum:forum_thread_create' %}">Create a New Thread</a>
+    {% endif %}
+</body>
+</html>
