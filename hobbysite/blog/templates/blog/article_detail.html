@@ -8,7 +8,7 @@
     <br><b>Updated on:</b> {{ article.updated_on }}
     <p><b>Description:</b> {{ article.entry }} </p>
 
-    <p><a href="{% url 'blog:edit' article.id %}">Edit this article</a></p>
+    <p><a href="{% url 'blog:update_article' article.id %}">Edit this article</a></p>
 
 
     <p><a href="{% url 'blog:list_view' %}">Back</a></p>
