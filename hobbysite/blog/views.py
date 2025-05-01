@@ -42,7 +42,7 @@ def category_view(request, id):
     articles = Article.objects.filter(category=category)
     return render(request, 'blog/category_list.html', {'category': category, 'articles': articles})
 
-@login_required
+#@login_required
 def add_article(request):
     form = ArticleForm()
 
@@ -58,7 +58,7 @@ def add_article(request):
 
     return render(request, "blog/add_article.html", ctx)
 
-@login_required
+#@login_required
 def edit_article(request, id):
     article = Article.objects.get(id=id)
     form = ArticleForm(instance=article)
