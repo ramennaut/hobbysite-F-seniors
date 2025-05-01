@@ -74,4 +74,4 @@ def edit_article(request, id):
         'article': article,
     } 
 
-    return render(request, "blog/add_article.html", ctx)
+    return render(request, "blog/update_article.html", ctx)
