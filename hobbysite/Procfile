@@ -1,1 +1,1 @@
-web: gunicorn hobbysite.hobbysite.wsgi:application --chdir hobbysite
+web: gunicorn hobbysite.wsgi:application --chdir hobbysite
