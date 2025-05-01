@@ -1,1 +1,1 @@
-web: gunicorn hobbysite.hobbysite.wsgi:application --log-file -
+web: gunicorn hobbysite.wsgi:application --log-file -
