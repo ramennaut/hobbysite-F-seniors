@@ -1,5 +1,5 @@
 from django.db import models
-from user_management.models import Profile
+#from user_management.models import Profile
 
 
 class ArticleCategory(models.Model):
@@ -15,7 +15,7 @@ class ArticleCategory(models.Model):
 
 class Article(models.Model):
     title = models.CharField(max_length=255)
-    author = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
+    #author = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
     category = models.ForeignKey(ArticleCategory, null=True, on_delete=models.SET_NULL)
     entry = models.TextField()
     header_image = models.ImageField(upload_to='image/', blank=True)
@@ -29,7 +29,7 @@ class Article(models.Model):
         return self.title
     
 class Comment(models.Model):
-    author = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
+    #author = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     entry = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)

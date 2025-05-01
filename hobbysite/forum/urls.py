@@ -9,4 +9,4 @@ urlpatterns = [
     path('thread/1', forum_thread_1, name='forum_thread_1'),
 ]
 
-app_name = 'commissions'
+app_name = 'forum'
