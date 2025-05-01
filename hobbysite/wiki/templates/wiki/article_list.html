@@ -29,10 +29,6 @@
 {% empty %}
     <p>No articles found</p>
 {% endfor %}
-
-{% if user.is_authenticated %}
-    <a href="{% url 'wiki:article_create' %}">Create a New Article</a>
-{% else %}
-    <p><a href="{% url 'login' %}">Login</a> to create articles</p>
-{% endif %}
 {% endblock %}
+
+
