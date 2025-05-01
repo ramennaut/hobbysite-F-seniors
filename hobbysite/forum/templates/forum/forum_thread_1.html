@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ thread.title }}</title>
+</head>
+<body>
+    <h1>{{ thread.title }}</h1>
+    <p>{{ thread.entry }}</p>
+    <p><em>Created on {{ thread.created_on }}</em></p>
+
+    {% if user == thread.author %}
+        <a href="{% url 'forum:forum_thread_edit' thread.pk %}">Edit Thread</a>
+    {% endif %}
+
+    <h2>Comments</h2>
+    <ul>
+        {% for comment in comments %}
+            <li>
+                <strong>{{ comment.author }}</strong>: {{ comment.entry }} ({{ comment.created_on }})
+            </li>
+        {% empty %}
+            <li>No comments yet.</li>
+        {% endfor %}
+    </ul>
+
+    {% if user.is_authenticated %}
+        <h3>Leave a Comment</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit">Post Comment</button>
+        </form>
+    {% else %}
+        <p><a href="{% url 'login' %}">Log in</a> to comment.</p>
+    {% endif %}
+
+    <h2>More in {{ thread.category.name }}</h2>
+    <ul>
+        {% for related_thread in related_threads %}
+            <li>
+                <a href="{% url 'forum:forum_thread_1' related_thread.pk %}">{{ related_thread.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'forum:forum_threads' %}">← Back to Threads</a>
+</body>
+</html>
