@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for owner, transaction_list in cart.items %}
+        <h4>{{owner.name}}</h4>
+        <ul>
+            {% for transaction in transaction_list %}
+                <li>
+                    {{ transaction.status }} <br>
+                    {{ transaction.amount }} {{ transaction.product }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+{% endblock content %}

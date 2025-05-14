@@ -6,6 +6,7 @@ from .models import Profile
 
 # Register your models here.
 
+
 class ProfileInLine(admin.StackedInline):
     model = Profile
     can_delete = False

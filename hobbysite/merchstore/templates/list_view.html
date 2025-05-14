@@ -1,9 +1,26 @@
-{% extends 'base_template.html' %}
+{% extends 'base.html' %}
 {% block content %}
     <h1>Merch Store</h1>
+
+    {% if request.user.is_authenticated %}
+        <p><a href="{% url 'Merchstore:product_add' %}">Create a New Product</a></p>
+        <p><a href="{% url 'Merchstore:transactions' %}">Check Current Transactions</a></p>
+        <h2>Your Products</h2>
+        <ul>
+            {% for product in user_products %}
+                <li><a href="{{product.get_absolute_url}}">{{ product.name }}</a></li>
+                {% empty %}
+                <li>You have no products</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <h2>All Products</h2>
     <ul>
-        {% for product in object_list %}
+        {% for product in all_products %}
             <li><a href="{{product.get_absolute_url}}">{{product.name}}</a></li>
+        {% empty %}
+            <li>There are no products available</li>
         {% endfor %}
     </ul>
 {% endblock content %}

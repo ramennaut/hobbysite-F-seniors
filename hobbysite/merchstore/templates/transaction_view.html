@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <a href="{% url 'Merchstore:products' %}"><button>Back</button></a>
+    {% for buyer, transactions in transaction_list.items %}
+        <h4>{{buyer.name}}</h4>
+        <ul>
+            {% for transaction in transactions %}
+                <li>
+                    {{ transaction.status }} <br>
+                    {{ transaction.amount }} {{ transaction.product }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+{% endblock content %}

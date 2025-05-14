@@ -4,8 +4,8 @@
 {% block title %}Homepage{% endblock %}
 {% block content %}
     <h1>Welcome to our hobbysite,
-    {% if user.is_authenticated %}
-        {{ user.profile.name }}!
+    {% if request.user.is_authenticated %}
+        {{ request.user.profile.name }}!
     {% else %}
         *User*!
     {% endif %}
@@ -20,6 +20,9 @@
         <button type="submit">Visit</button></a><br>
     <h3>Wiki:</h3>
     <a href="{% url 'wiki:article_list' %}">
+        <button type="submit">Visit</button></a><br><br>
+    <h3>MerchStore:</h3>
+    <a href="{% url 'Merchstore:products' %}">
         <button type="submit">Visit</button></a><br><br>
         <hr><br><br>
 {% endblock %}

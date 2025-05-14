@@ -1,9 +1,37 @@
-{% extends 'base_template.html' %}
+{% extends 'base.html' %}
 {% block content %}
     <h1> Merch Store </h1>
+
+    <a href="{% url 'Merchstore:products' %}"><button>Back</button></a>
+
     <h3> {{product.name}} </h3>
+    <sub>by {{product.owner}}</sub>
     <ul>
-        <li>{{product.name}} is PHP {{product.price}} </li>
+        <li><b>Stock</b>: {{product.stock}}</li>
+        <li><b>Price</b>: PHP {{product.price}}</li>
     </ul>
-    {{product.product_type}} {{product.description}}
-    {% endblock content %}
+
+    {% if product.owner == user %}
+        <p><a href="{% url 'Merchstore:product_update' pk %}">
+            <button>Edit Product</button>
+        </a></p>
+    {% endif %}
+
+    <b>{{product.product_type}}</b>
+    <p>{{product.description}}</p>
+    <p><b>{{product.status}}</b></p>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ transaction_form.as_p }}
+        <button
+            type="submit"
+            {% if product.stock <= 0 or product.owner == user %}
+                disabled
+            {% endif %}
+            >Purchase</button>
+    </form>
+    {% if error %}
+        <p style="color:red">{{ error }}</p>
+    {% endif %}
+{% endblock content %}
